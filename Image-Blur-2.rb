@@ -12,7 +12,9 @@ def image_blur(entry)
 					@newarry[x][y+1] = 1
 					@newarry[x+1][y] = 1
 				end
-				if x < @arry.length && y == 0
+			end
+			if cell == 1
+				if (0 > x && x < 4) && y == 0
 					@newarry[x-1][y] = 1
 					@newarry[x+1][y] = 1
 					@newarry[x][y+1] = 1
@@ -26,9 +28,9 @@ end
 
 
 image = ([
-  [0, 0, 0, 0],
+  [1, 0, 0, 0],
   [0, 1, 0, 0],
-  [1, 0, 0, 1],
+  [0, 0, 0, 1],
   [0, 0, 0, 0]
 ])
 
