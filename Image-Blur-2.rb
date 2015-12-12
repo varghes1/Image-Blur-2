@@ -11,6 +11,7 @@ def image_blur(entry)
 				if (x-1) >= 0
 					@newarry[x-1][y] = 1
 					@newarry[x+1][y] = 1
+					@newarry[x][y+1] = 1
 				end
 			end
 		end
@@ -22,8 +23,8 @@ end
 
 image = ([
   [0, 0, 0, 0],
+  [0, 0, 0, 0],
   [0, 1, 0, 0],
-  [0, 0, 0, 1],
   [0, 0, 0, 0]
 ])
 
