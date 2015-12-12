@@ -8,16 +8,9 @@ def image_blur(entry)
 		@arry[x].each_with_index do |cell,y|
 			cell = @arry[x][y]
 			if cell == 1
-				if x = 0 && y = 0
-					@newarry[x][y+1] = 1
-					@newarry[x+1][y] = 1
-				end
-			end
-			if cell == 1
-				if (0 > x && x < 4) && y == 0
+				if (x-1) >= 0
 					@newarry[x-1][y] = 1
 					@newarry[x+1][y] = 1
-					@newarry[x][y+1] = 1
 				end
 			end
 		end
@@ -28,7 +21,7 @@ end
 
 
 image = ([
-  [1, 0, 0, 0],
+  [0, 0, 0, 0],
   [0, 1, 0, 0],
   [0, 0, 0, 1],
   [0, 0, 0, 0]
