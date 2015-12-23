@@ -32,6 +32,7 @@ class Image
 				#for every pixel if it == 1
 				if @arry[x][y] == 1
 
+					#vertical 1's
 
 					i = 1
 					while i <= distance && (x-i) >= 0
@@ -44,11 +45,9 @@ class Image
 						copy[x+i][y] = 1
 						i+=1
 					end
-					#change the copy to make a diamond of '1's
-
-					#if distance is not too big on x, then change to 1's
 
 
+					#manhattan distance
 
 					i = 1
                 	while i <= distance
@@ -101,29 +100,6 @@ class Image
                     		i += 1
                     	end
                     end
-
-               
-
-
-						# #if y+1 is not too big
-						# if (y+i) < @arry[x].length
-						# 	copy[x][y+i] = 1
-						# end
-						# #if y-1 is not too small
-						# if (y-i) >= 0
-						# 	copy[x][y-i] = 1
-						# end
-						# #if x+1 is not too big
-
-						# if (x+i) < @arry.length
-						# 	#change (x+1),y to equal 1
-						# 	copy[x+i][y] = 1
-						# end
-						# #if x-1 is not too small
-						# if (x-i) >= 0
-						# 	copy[x-i][y] = 1
-						# end
-					
 				end
 			end
 		end
