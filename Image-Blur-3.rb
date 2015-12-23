@@ -17,6 +17,7 @@ class Image
 
 
 	def blur(distance)
+		distance
 		copy = []
 		@arry.each_index do |x|
 			copy << []
@@ -30,33 +31,98 @@ class Image
 			@arry[x].each_index do |y|
 				#for every pixel if it == 1
 				if @arry[x][y] == 1
+
+
+					i = 1
+					while i <= distance && (x-i) >= 0
+						copy[x-i][y] = 1
+						i+=1
+					end
+
+					i = 1
+					while i <= distance && (x+i) <= @arry.length
+						copy[x+i][y] = 1
+						i+=1
+					end
 					#change the copy to make a diamond of '1's
 
 					#if distance is not too big on x, then change to 1's
 
 
-					distance.times do |i|
+
+					i = 1
+                	while i <= distance
+                        if (y+i) <= @arry[x].length
+                            copy[x][y+i] = 1
+                            j = (distance - i)
+                            while j >= 0 && (x+j) <= @arry.length
+                            	copy[x+j][y+i] = 1
+                            	j -= 1
+                            end
+                            i += 1
+                        end
+                    end
+
+                    i = 1
+                    while i <= distance
+                    	if (y-i) >= 0
+                    		copy[x][y-i] = 1
+                    		j = (distance - i)
+                    		while j >= 0 && (x+j)< @arry.length
+                    			copy[x+j][y-i] = 1
+                    			j-=1
+                    		end
+                    		i+=1
+                    	end
+                    end
+
+                    i = 1
+                    while i <= distance
+                    	if (y-i) >= 0
+                    		copy[x][y-i] = 1
+                    		j = (distance - i)
+                    		while j>=0 && (x-j) >= 0
+                    			copy[x-j][y-i] = 1
+                    			j -= 1
+                    		end
+                    		i += 1
+                    	end
+                    end
+
+                    i = 1
+                    while i <= distance
+                    	if (y+i) <= @arry[x].length
+                    		copy[x][y+i] = 1
+                    		j = (distance - i)
+                    		while j>= 0 && (x-j) >= 0
+                    			copy[x-j][y+i] = 1
+                    			j -= 1
+                    		end
+                    		i += 1
+                    	end
+                    end
+
+               
 
 
-						#if y+1 is not too big
-						if (y+i) < @arry[x].length
-							copy[x][y+i] = 1
-						end
-						#if y-1 is not too small
-						if (y-i) >= 0
-							copy[x][y-i] = 1
-						end
-						#if x+1 is not too big
+						# #if y+1 is not too big
+						# if (y+i) < @arry[x].length
+						# 	copy[x][y+i] = 1
+						# end
+						# #if y-1 is not too small
+						# if (y-i) >= 0
+						# 	copy[x][y-i] = 1
+						# end
+						# #if x+1 is not too big
 
-						if (x+i) < @arry.length
-							#change (x+1),y to equal 1
-							copy[x+i][y] = 1
-						end
-						#if x-1 is not too small
-						if (x-i) >= 0
-							copy[x-i][y] = 1
-						end
-					end
+						# if (x+i) < @arry.length
+						# 	#change (x+1),y to equal 1
+						# 	copy[x+i][y] = 1
+						# end
+						# #if x-1 is not too small
+						# if (x-i) >= 0
+						# 	copy[x-i][y] = 1
+						# end
 					
 				end
 			end
@@ -71,12 +137,19 @@ class Image
 end
 
 image = Image.new([
-  [0, 0, 0, 0],
-  [0, 1, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0]
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ])
 #image.output_image
 
-image.blur(2)
+image.blur(5)
 image.output_image
