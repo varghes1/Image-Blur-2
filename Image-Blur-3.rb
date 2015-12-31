@@ -34,70 +34,75 @@ class Image
 
 					#vertical 1's
 
-					i = 1
-					while i <= distance && (x-i) >= 0
-						copy[x-i][y] = 1
-						i+=1
-					end
+					# i = 1
+					# while i <= distance && (x-i) >= 0
+					# 	copy[x-i][y] = 1
+					# 	i+=1
+					# end
 
-					i = 1
-					while i <= distance && (x+i) <= @arry.length
-						copy[x+i][y] = 1
-						i+=1
-					end
+					# i = 1
+					# while i <= distance && (x+i) <= @arry.length
+					# 	copy[x+i][y] = 1
+					# 	i+=1
+					# end
 
 
 					#manhattan distance
 
-					i = 1
-                	while i <= distance
-                        if (y+i) <= @arry[x].length
+					# i = 1
+     #            	while i <= distance
+                    distance.times do |i|
+                        if (y+i) < @arry[x].length
                             copy[x][y+i] = 1
-                            j = (distance - i)
-                            while j >= 0 && (x+j) <= @arry.length
+                            j = 1
+                            while j <= (distance - i) && (x+j) < (@arry.length)
                             	copy[x+j][y+i] = 1
-                            	j -= 1
+                            	j += 1
                             end
-                            i += 1
                         end
+                    #     i += 1
                     end
 
-                    i = 1
-                    while i <= distance
-                    	if (y-i) >= 0
+                    # i = 1
+                    # while i <= distance
+                    distance.times do |i|
+                    	if (y-i) > 0
                     		copy[x][y-i] = 1
-                    		j = (distance - i)
-                    		while j >= 0 && (x+j)< @arry.length
+                    		j = 1
+                    		while j <= (distance - i) && (x+j) < @arry.length
                     			copy[x+j][y-i] = 1
-                    			j-=1
+                    			j+=1
                     		end
-                    		i+=1
+                    # 		i+=1
                     	end
                     end
 
-                    i = 1
-                    while i <= distance
-                    	if (y-i) >= 0
+                    # i = 1
+                    # while i <= distance
+
+                    distance.times do |i|
+                    	if (y-i) > 0
                     		copy[x][y-i] = 1
-                    		j = (distance - i)
-                    		while j>=0 && (x-j) >= 0
+                    		j = 1
+                    		while j <= (distance - i) && (x-j) > 0
                     			copy[x-j][y-i] = 1
-                    			j -= 1
+                    			j += 1
                     		end
-                    		i += 1
+                    # 		i += 1
                     	end
                     end
 
-                    i = 1
-                    while i <= distance
-                    	if (y+i) <= @arry[x].length
+                    # i = 1
+                    # while i <= distance
+                    distance.times do |i|
+                    	if (y+i) < @arry[x].length
                     		copy[x][y+i] = 1
-                    		j = (distance - i)
-                    		while j>= 0 && (x-j) >= 0
+                    		j = 1
+                    		while j <= (distance - i) && (x-j) > 0
                     			copy[x-j][y+i] = 1
-                    			j -= 1
+                    			j += 1
                     		end
-                    		i += 1
+                    # 		i += 1
                     	end
                     end
 				end
@@ -113,19 +118,19 @@ class Image
 end
 
 image = Image.new([
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
 ])
 #image.output_image
 
-image.blur(5)
+image.blur(3)
 image.output_image
